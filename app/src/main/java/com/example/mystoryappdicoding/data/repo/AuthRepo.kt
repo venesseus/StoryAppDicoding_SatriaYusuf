@@ -102,6 +102,6 @@ class AuthRepo {
     }
 
     companion object {
-        private const val TAG = "Authrepo"
+        private const val TAG = "AuthRepository"
     }
 }
