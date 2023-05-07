@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name">Satria Yusuf Story App</string>
+
+    <!-- POST STORY -->
+    <string name="add_story">Tambah Cerita</string>
+    <string name="select_image">Pilih Gambar</string>
+    <string name="selected_image">Gambar terpilih</string>
+    <string name="description">Tulis cerita kamu disini</string>
+    <string name="post_story">Post Story</string>
+    <string name="expanded">Expand the image</string>
+    <string name="activate_location">Nyalakan Lokasi</string>
+    <string name="location_permission">Tolong aktifkan lokasi</string>
+    <string name="description_cannot_be_empty">Deskripsi harus diisi</string>
+    <string name="upload_success">Story telah terkirim!</string>
+    <string name="upload_failed">Story gagal dikirim!</string>
+    <string name="allow_location">Lokasi diizinkan</string>
+    <string name="cannot_post">Tidak ada yang bisa di posting</string>
+
+    <!-- MAIN ACTIVITY -->
+    <string name="greetings">Selamat Datang</string>
+
+    <!-- DETAIL ACTIVITY -->
+    <string name="detail_story">Detail story</string>
+    <string name="story_picture">Story Picture</string>
+
+    <!-- STORY FRAGMENT -->
+    <string name="story">Cerita</string>
+    <string name="error">Waduh, ada error!</string>
+
+    <!-- USER ITEM -->
+    <string name="username">Nama pengguna</string>
+    <string name="date">dd/MM/YYYY</string>
+    <string name="description_story">Deskripsi cerita</string>
+
+    <!-- CAMERA ACTIVITY -->
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="photo">Ambil Foto</string>
+    <string name="switch_camera">Putar kamera</string>
+    <string name="wait">Mohon menunggu</string>
+    <string name="picture_failed">Gagal mengambil gambar</string>
+    <string name="camera_failed">Kamera gagal beroperasi</string>
+
+    <!-- ONBOARDING -->
+    <string name="login_title">Login &amp; \nBuat cerita kamu di Dicoding!</string>
+    <string name="email">Surel</string>
+    <string name="input_email">Mohon masukkan surel anda</string>
+    <string name="email_cannot_be_empty">Surel harus diisi</string>
+    <string name="format_email">Format surel salah</string>
+    <string name="email_taken">Surel anda sudah ada sebelumnya</string>
+    <string name="password">Kata Sandi</string>
+    <string name="format_password">Password minimal memiliki 8 karakter</string>
+    <string name="fill_password">Mohon isi kata sandi</string>
+    <string name="fill">Mohon isi data</string>
+    <string name="login">Masuk</string>
+    <string name="register">Daftar</string>
+    <string name="register_title">Daftarkan Dirimu Sekarang!</string>
+    <string name="name">Nama</string>
+    <string name="already">Sudah punya akun?</string>
+    <string name="empty">Tolong isi %s dengan benar</string>
+    <string name="not_valid">Format tidak valid</string>
+    <string name="login_failed">Login gagal</string>
+    <string name="login_success">login berhasil\nSelamat datang, </string>
+    <string name="login_not_matched">Surel dan kata sandi tidak sesuai</string>
+    <string name="registration_success">Selamat! Kamu telah terdaftar!</string>
+    <string name="registration_failed">Gagal untuk terdaftar</string>
+
+    <!-- AKTIVITAS LOKASI -->
+    <string name="location">Lokasi</string>
+    <string name="title_activity_maps">MapsActivity</string>
+
+    <!-- AKTIVITAS AKUN -->
+    <string name="account">Akun</string>
+    <string name="logout">Keluar</string>
+    <string name="confirmation">Apakah anda ingin logout?</string>
+    <string name="yes">Iya</string>
+    <string name="no">Tidak</string>
+
+    <!-- AKTIVITAS SPLASH -->
+    <string name="welcome">Selamat Datang!</string>
+    <string name="join">Bergabunglah dengan kami!</string>
+    <string name="wanna_joined">Bergabung?</string>
+    <string name="see_story">Ingin mulai melihat cerita-cerita kawan seperjuangan?</string>
+
+    <string name="retry">Coba lagi</string>
+    <string name="permission">Dibutuhkan izin</string>
+    <string name="cant_connect">Tidak bisa terhubung</string>
+</resources>
