@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto" >
 
     <item
+        android:id="@+id/music"
+        android:title="@string/music"
+        android:icon="@drawable/baseline_play_arrow_24"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/location"
         android:title="@string/location"
         android:icon="@drawable/baseline_map_24"

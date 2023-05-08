@@ -1,8 +1,10 @@
 package com.example.mystoryappdicoding.ui.detail
 
+import android.content.Context
 import android.location.Geocoder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
@@ -58,12 +60,15 @@ class DetailActivity : AppCompatActivity() {
 
         val isFavorite = MutableLiveData(false)
         binding.favorite.setOnClickListener {
+            val context: Context = binding.root.context
             if (isFavorite.value == false) {
                 binding.favorite.setImageResource(R.drawable.baseline_favorite_24)
                 isFavorite.value = true
+                Toast.makeText(context, "Telah difavoritkan", Toast.LENGTH_SHORT).show()
             } else {
                 binding.favorite.setImageResource(R.drawable.baseline_favorite_border_24)
                 isFavorite.value = false
+                Toast.makeText(context, "Telah dilupakan :(", Toast.LENGTH_SHORT).show()
             }
         }
     }

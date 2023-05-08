@@ -35,13 +35,6 @@
         app:layout_constraintStart_toStartOf="@+id/tv_name"
         app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
-    <TextView
-        android:id="@+id/tv_location"
-        style="@style/layout_ww"
-        android:text="@string/location"
-        app:layout_constraintStart_toStartOf="@+id/tv_created"
-        app:layout_constraintTop_toBottomOf="@+id/tv_created" />
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_image"
         style="@style/layout_mw"

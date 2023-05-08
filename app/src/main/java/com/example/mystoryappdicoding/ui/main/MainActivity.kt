@@ -1,20 +1,30 @@
 package com.example.mystoryappdicoding.ui.main
 
 import android.content.Intent
+import android.location.Geocoder
+import android.media.AudioAttributes
+import android.media.MediaPlayer
+import android.media.SoundPool
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterInside
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.mystoryappdicoding.R
 import com.example.mystoryappdicoding.data.misc.AuthPreferences
 import com.example.mystoryappdicoding.data.repo.AuthRepo
+import com.example.mystoryappdicoding.data.response.ListStory
 import com.example.mystoryappdicoding.data.room.StoryDatabase
 import com.example.mystoryappdicoding.databinding.ActivityMainBinding
 import com.example.mystoryappdicoding.ui.login.LoginActivity
@@ -25,10 +35,15 @@ import com.example.mystoryappdicoding.util.Const.Companion.LIST_LOCATION
 import com.example.mystoryappdicoding.util.Const.Companion.LIST_USERNAME
 import com.example.mystoryappdicoding.util.Const.Companion.TOKEN
 import com.google.android.gms.maps.model.LatLng
-import java.util.Timer
+import java.io.IOException
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.concurrent.schedule
 
 class MainActivity : AppCompatActivity() {
+
+    private var mMediaPlayer: MediaPlayer? = null
+    private var isReady: Boolean = false
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var pagingModel: PagingModel
@@ -54,6 +69,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.setDisplayShowTitleEnabled(true)
+
+        init() //Music
 
         storyDatabase = StoryDatabase.getInstance(this)
         mainAdapter = MainAdapter()
@@ -157,10 +174,42 @@ class MainActivity : AppCompatActivity() {
                     .also {
                         it.putExtra(LIST_LOCATION, listLocation)
                         it.putExtra(LIST_USERNAME, listUserName)
-                    })
+                    }
+                )
+            }
+            R.id.music -> {
+                if (!isReady) {
+                    mMediaPlayer?.prepareAsync()
+                } else {
+                    if (mMediaPlayer?.isPlaying as Boolean) {
+                        mMediaPlayer?.pause()
+                    } else {
+                        mMediaPlayer?.start()
+                    }
+                }
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun init() {
+        mMediaPlayer = MediaPlayer()
+        val attribute = AudioAttributes.Builder()
+            .setUsage(AudioAttributes.USAGE_MEDIA)
+            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+            .build()
+        mMediaPlayer?.setAudioAttributes(attribute)
+        val afd = applicationContext.resources.openRawResourceFd(R.raw.suriap)
+        try {
+            mMediaPlayer?.setDataSource(afd.fileDescriptor, afd.startOffset, afd.length)
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+        mMediaPlayer?.setOnPreparedListener {
+            isReady = true
+            mMediaPlayer?.start()
+        }
+        mMediaPlayer?.setOnErrorListener { _, _, _ -> false }
     }
 
     @Deprecated("Deprecated in Java")

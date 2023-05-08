@@ -7,7 +7,7 @@
     <string name="selected_image">Gambar terpilih</string>
     <string name="description">Tulis cerita kamu disini</string>
     <string name="post_story">Post Story</string>
-    <string name="expanded">Expand the image</string>
+    <string name="expanded">telah difavoritkan</string>
     <string name="activate_location">Nyalakan Lokasi</string>
     <string name="location_permission">Tolong aktifkan lokasi</string>
     <string name="description_cannot_be_empty">Deskripsi harus diisi</string>
@@ -85,4 +85,6 @@
     <string name="retry">Coba lagi</string>
     <string name="permission">Dibutuhkan izin</string>
     <string name="cant_connect">Tidak bisa terhubung</string>
+    <string name="music">Musik!!!!</string>
+
 </resources>

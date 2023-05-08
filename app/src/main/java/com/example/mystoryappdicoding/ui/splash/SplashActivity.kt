@@ -28,7 +28,7 @@ class SplashActivity : AppCompatActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed({
             token()
-        }, 1000)
+        }, 1500)
     }
 
     private fun token() {

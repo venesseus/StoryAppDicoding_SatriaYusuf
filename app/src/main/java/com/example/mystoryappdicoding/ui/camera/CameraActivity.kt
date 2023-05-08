@@ -14,7 +14,6 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.example.mystoryappdicoding.R
 import com.example.mystoryappdicoding.databinding.ActivityCameraBinding
-import com.example.mystoryappdicoding.util.Const
 import com.example.mystoryappdicoding.util.Const.Companion.CAMERAX_RESULT
 import com.example.mystoryappdicoding.util.createFile
 import com.example.mystoryappdicoding.util.showToast
