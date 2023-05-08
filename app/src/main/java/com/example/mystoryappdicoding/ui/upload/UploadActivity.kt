@@ -4,6 +4,7 @@ import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.Intent
 import android.content.Intent.ACTION_GET_CONTENT
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -34,6 +35,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
+import java.io.FileOutputStream
 
 class UploadActivity : AppCompatActivity() {
 
@@ -69,13 +71,17 @@ class UploadActivity : AppCompatActivity() {
             val myFile = result.data?.getSerializableExtra("Picture") as File
             val isBackCamera = result.data?.getBooleanExtra("IsBackCamera", true) as Boolean
 
-            myFile.let { file ->
-                rotateFile(file, isBackCamera)
-                getFile = file
-                binding.ivStory.setImageBitmap(BitmapFactory.decodeFile(file.path))
-            }
+            getFile = myFile
+            val results = rotateBitmap(
+                BitmapFactory.decodeFile(getFile?.path),
+                isBackCamera
+            )
+
+            results.compress(Bitmap.CompressFormat.JPEG, 100, FileOutputStream(myFile))
+            binding.ivStory.setImageBitmap(BitmapFactory.decodeFile(myFile.path))
         }
     }
+
 
     private val launcherIntentGallery = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -206,8 +212,7 @@ class UploadActivity : AppCompatActivity() {
                     }
                 }
             }
-        }
-        else showToast(this, getString(R.string.cannot_post))
+        } else showToast(this, getString(R.string.cannot_post))
     }
 
     override fun onSupportNavigateUp(): Boolean {

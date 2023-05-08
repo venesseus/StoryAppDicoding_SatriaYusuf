@@ -3,6 +3,7 @@ package com.example.mystoryappdicoding.ui.main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
@@ -18,12 +19,11 @@ import com.example.mystoryappdicoding.data.room.StoryDatabase
 import com.example.mystoryappdicoding.databinding.ActivityMainBinding
 import com.example.mystoryappdicoding.ui.login.LoginActivity
 import com.example.mystoryappdicoding.ui.maps.MapsActivity
-import com.example.mystoryappdicoding.util.AuthViewModel
+import com.example.mystoryappdicoding.ui.upload.UploadActivity
+import com.example.mystoryappdicoding.util.*
 import com.example.mystoryappdicoding.util.Const.Companion.LIST_LOCATION
 import com.example.mystoryappdicoding.util.Const.Companion.LIST_USERNAME
-import com.example.mystoryappdicoding.util.PagingModel
-import com.example.mystoryappdicoding.util.PreferencesFactory
-import com.example.mystoryappdicoding.util.Token
+import com.example.mystoryappdicoding.util.Const.Companion.TOKEN
 import com.google.android.gms.maps.model.LatLng
 import java.util.Timer
 import kotlin.concurrent.schedule
@@ -74,8 +74,24 @@ class MainActivity : AppCompatActivity() {
         token.getToken().observe(this) { token ->
             if (token != null) {
                 setAdapter()
-                1112312
+                mainViewModel.getStory().observe(this) { story ->
+                    mainAdapter.submitData(lifecycle, story)
+                    mainAdapter.snapshot().items
+                }
+                mainViewModel.loading.value = false
+            } else {
+                Log.e(TOKEN, "invalid token")
+                finishAffinity()
             }
+        }
+
+        mainViewModel.loading.observe(this) { isLoading ->
+            showLoading(binding.progressBar, isLoading)
+        }
+
+        binding.refresh.setOnRefreshListener { refresh() }
+        binding.fabUpload.setSafeOnClickListener {
+            startActivity(Intent(this, UploadActivity::class.java))
         }
     }
 

@@ -27,28 +27,22 @@ class EmailEditText: AppCompatEditText {
     }
 
     private fun init() {
-        addTextChangedListener(object: TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-                //
+
+        addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) {
-                    error = if (!isEmailValid(text.toString())) {
-                        resources.getString(R.string.input_email)
-                    } else {
-                        null
-                    }
-                }
+                error = if (!isEmailValid(s)) "The email is not valid" else null
             }
 
-            override fun afterTextChanged(s: Editable) {
-                //
+            override fun afterTextChanged(s: Editable?) {
             }
+
         })
     }
 
-    private fun isEmailValid(email: String): Boolean {
+    private fun isEmailValid(email: CharSequence): Boolean {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 }

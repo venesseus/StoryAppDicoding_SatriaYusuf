@@ -29,7 +29,8 @@ class AuthRepo {
     val isLoading: LiveData<Boolean> = _isLoading
 
     private val _regMessage = MutableLiveData<Event<String>>()
-    val regMessage: LiveData<Event<String>> = _regMessage
+    val regMessage: LiveData<Event<String>>
+        get() = _regMessage
 
     private val _logMessage = MutableLiveData<Event<String>>()
     val logMessage: LiveData<Event<String>>
@@ -42,6 +43,8 @@ class AuthRepo {
     ): LiveData<RegisterResponse> {
         _isEnabled.value = false
         _isLoading.value = true
+
+
 
         ApiConfig.getApiService().register(name, email, password)
             .enqueue(object : Callback<RegisterResponse> {
@@ -72,6 +75,8 @@ class AuthRepo {
     ): LiveData<LoginResponse> {
         _isEnabled.value = false
         _isLoading.value = true
+
+        Log.e(TAG, "Hasil adalah $email")
 
         ApiConfig.getApiService().login(email, password)
             .enqueue(object : Callback<LoginResponse> {

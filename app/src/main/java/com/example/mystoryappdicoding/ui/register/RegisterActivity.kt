@@ -43,7 +43,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun register() {
         val username = binding.edtUsername.text.toString().trim()
         val email = binding.edtEmailInput.text.toString().trim()
-        val password = binding.edtPasswordInput.toString().trim()
+        val password = binding.edtPasswordInput.text.toString().trim()
 
         authViewModel.isEnabled.observe(this) { isEnabled ->
             binding.btnRegister.isEnabled = isEnabled

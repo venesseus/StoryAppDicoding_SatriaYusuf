@@ -38,13 +38,7 @@ class PasswordEditText : AppCompatEditText {
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (!text.isNullOrBlank()) {
-                    error = if (text!!.length <= 6) {
-                        resources.getString(R.string.format_password)
-                    } else {
-                        null
-                    }
-                }
+                error = if (s.count() < 8) "The password must be 8 characters" else null
             }
 
             override fun afterTextChanged(s: Editable?) {
