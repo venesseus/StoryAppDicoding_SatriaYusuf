@@ -25,7 +25,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="Tolong isi apikey maps anda disini >_<" />
+            android:value="Tolong isi apikey maps anda disini ya... >_<" />
 
         <activity
             android:name=".ui.maps.MapsActivity"
