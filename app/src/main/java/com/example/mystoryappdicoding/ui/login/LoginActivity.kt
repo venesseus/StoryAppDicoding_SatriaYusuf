@@ -50,18 +50,22 @@ class LoginActivity : AppCompatActivity() {
     private fun login() {
         val email = binding.edtEmailInput.text.toString().trim()
         val password = binding.edtPasswordInput.text.toString().trim()
-        authViewModel.isEnabled.observe(this) { isEnabled ->
-            binding.btnLogin.isEnabled = isEnabled
-        }
+
         authViewModel.isLoading.observe(this) { isLoading ->
             showLoading(binding.progressBar, isLoading)
         }
         when {
-            password.isBlank() or email.isBlank() -> {
-                showToast(this, getString(R.string.fill_password))
+            email.isEmpty() -> {
+                binding.edtEmailInput.error = "Email tidak boleh kosong"
+            }
+            password.isEmpty() -> {
+                binding.edtPasswordInput.error = "Password tidak boleh kosong"
+            }
+            password.length < 8 -> {
+                binding.edtPasswordInput.error = "Password harus lebih dari 8"
             }
             !email.matches(emailPattern) -> {
-                showToast(this, getString(R.string.format_email))
+                binding.edtEmailInput.error = "Format email tidak sesuai"
             }
             else -> {
                 authViewModel.login(email, password)

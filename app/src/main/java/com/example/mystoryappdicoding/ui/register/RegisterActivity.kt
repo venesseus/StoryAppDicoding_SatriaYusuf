@@ -45,23 +45,25 @@ class RegisterActivity : AppCompatActivity() {
         val email = binding.edtEmailInput.text.toString().trim()
         val password = binding.edtPasswordInput.text.toString().trim()
 
-        authViewModel.isEnabled.observe(this) { isEnabled ->
-            binding.btnRegister.isEnabled = isEnabled
-        }
         authViewModel.isLoading.observe(this) { isLoading ->
             showLoading(binding.progressBar, isLoading)
         }
 
-        //Cek input
         when {
-            password.isBlank() or email.isBlank() or username.isBlank() -> {
-                showToast(this, getString(R.string.fill))
+            username.isEmpty() -> {
+                binding.edtUsername.error = "Nama tidak boleh kosong"
+            }
+            email.isEmpty() -> {
+                binding.edtEmailInput.error = "Email tidak boleh kosong"
+            }
+            password.isEmpty() -> {
+                binding.edtPasswordInput.error = "Password tidak boleh kosong"
             }
             password.length < 8 -> {
-                showToast(this, getString(R.string.format_password))
+                binding.edtPasswordInput.error = "Karakter harus lebih dari 8"
             }
             !email.matches(emailPattern) -> {
-                showToast(this, getString(R.string.format_email))
+                binding.edtEmailInput.error = "Format email tidak sesuai"
             }
             else -> {
                 authViewModel.register(username, email, password)
